@@ -33,8 +33,8 @@ namespace Algo_assignment2
     {
         static void Main(string[] args)
         {
-            string path=@"F:\\retail.dat";
-           // string path = null;
+            //string path=@"F:\\retail.dat";
+            string path = null;
             if (path == null)
             {
                 Console.WriteLine("enter the path ");
@@ -62,6 +62,7 @@ namespace Algo_assignment2
             }
 
             call_subsetcover(s, subsets, Num_subset);
+            Console.ReadKey();
 
         }
 
