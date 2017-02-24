@@ -85,6 +85,10 @@ namespace Algo_assignment2
             while (set.Count() != 0)
             {
                // var temp = subsets_inter.Max(t=>t.count);
+
+
+                subsets_inter = update_subsets_inter(set, subsets_inter);
+
                 var maxObject = subsets_inter.OrderByDescending(item => item.count).Where(itm=>itm.flag!=true).First();
                 maxObject.setselected(true,i);
                 i++;
@@ -106,6 +110,19 @@ namespace Algo_assignment2
                 Console.WriteLine("\n set no :{0}  order : {1} ",itt.setNum,itt.order );
             }
 
+        }
+
+        private static List<items> update_subsets_inter(List<int> set, List<items> subsets_inter)
+        {
+            List<items> subsets_inter_ = subsets_inter;
+
+            foreach (var it in subsets_inter.Where(its=>its.flag!=true && its.order==0))
+            {
+                it.itemSet = set.Intersect(it.itemSet).ToList();
+                it.count = it.itemSet.Count();
+            }
+
+            return subsets_inter_;
         }
 
         private static List<int> createInitialSet(string p, int q)
